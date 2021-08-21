@@ -78,19 +78,12 @@
       </div>
       <script>
          document.getElementById("phone-add").addEventListener("click", function(){
-            const phoneInput = document.getElementById("phone-count").value;
-            const phoneNumber = parseFloat(phoneInput);
+            const phoneInput = document.getElementById("phone-count");
+            const phoneNumber = parseInt(phoneInput.value);
             const phoneNewNumber = phoneNumber +1;
-            
-            const phoneNewCount = document.getElementById("phone-count");
-            phoneNewCount.value = phoneNewNumber;
-
-            const phoneValue = document.getElementById("phoneValue");
-            const phoneValueNumber = parseFloat(phoneValue);
-            const phoneNewValue = phoneValueNumber + 1219;
+            phoneInput.value = phoneNewNumber;
+            const phoneNewValue = phoneNewNumber * 1219;
             document.getElementById("phoneValue").innerText = phoneNewValue;
-
-
          })
       </script>
    </section>
