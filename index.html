@@ -25,9 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="phone-reduce" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="handleProductChange('phone', false)" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="phone-count" type="text" class="form-control text-center" value="1">
-                           <button id="phone-add" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductChange('phone', true)" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
                         </div>
                         <h5>$ <span id="phoneValue">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,12 +45,13 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
-
+                           <button onclick="handleProductChange('case', false)" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handleProductChange('case', true)" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="caseValue">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -56,13 +59,11 @@
 
                <div class="cart-item">
                   <div class="row">
-
                      <div class="col-md-8">
                         <h5>Subtotal: </h5>
                         <h5>Tax:</h5>
                         <h5>Total:</h5>
                      </div>
-
                      <div class="col-md-4 status">
                         <h5>$1,278</h5>
                         <h5>$0</h5>
@@ -77,17 +78,112 @@
          </div>
       </div>
       <script>
-         document.getElementById("phone-add").addEventListener("click", function(){
-            const phoneInput = document.getElementById("phone-count");
-            const phoneNumber = parseInt(phoneInput.value);
-            const phoneNewNumber = phoneNumber +1;
-            phoneInput.value = phoneNewNumber;
-            const phoneNewValue = phoneNewNumber * 1219;
-            document.getElementById("phoneValue").innerText = phoneNewValue;
-         })
+         // document.getElementById("phone-add").addEventListener("click", function () {
+         //    handleProductChange( true)
+         // })
+         // document.getElementById("phone-reduce").addEventListener("click", function () {
+         //    handleProductChange(false)
+         // })
+         function handleProductChange(product, isIncrease) {
+            const productInput = document.getElementById(product + "-count");
+            const productNumber = parseInt(productInput.value);
+            // const phoneNewNumber = phoneNumber - 1;
+            let productNewNumber = productNumber;
+            if (isIncrease == true) {
+               productNewNumber = productNumber + 1;
+            }
+            else if (isIncrease == false && productNumber > 0) {
+               productNewNumber = productNumber - 1;
+            }
+            productInput.value = productNewNumber;
+            // const productNewValue = productNewNumber * 1219;
+            let productNewValue = 0;
+            if (product == "phone") {
+               productNewValue = productNewNumber * 1219;
+            }
+            else if (product == "case") {
+               productNewValue = productNewNumber * 59;
+            }
+            document.getElementById(product + "Value").innerText = productNewValue;
+         }
+
+         // function handleProductChange(isIncrease) {
+         //    const phoneInput = document.getElementById("phone-count");
+         //    const phoneNumber = parseInt(phoneInput.value);
+         //    // const phoneNewNumber = phoneNumber - 1;
+         //    let phoneNewNumber = phoneNumber;
+         //    if (isIncrease == true) {
+         //       phoneNewNumber = phoneNumber + 1;
+         //    }
+         //    else if (isIncrease == false && phoneNumber > 0) {
+         //       phoneNewNumber = phoneNumber - 1;
+         //    }
+         //    phoneInput.value = phoneNewNumber;
+         //    const phoneNewValue = phoneNewNumber * 1219;
+         //    document.getElementById("phoneValue").innerText = phoneNewValue;
+         // }
+
+         // document.getElementById("case-reduce").addEventListener("click", function () {
+         //    handleCaseChange(false)
+         // })
+         // document.getElementById("case-add").addEventListener("click", function () {
+         //    handleCaseChange(true)
+         // })
+
+         // function handleCaseChange(isIncrease) {
+         //    const caseInput = document.getElementById("case-count");
+         //    const caseNumber = parseInt(caseInput.value);
+         //    // const caseNewNumber = caseNumber - 1;
+         //    let caseNewNumber = caseNumber;
+         //    if(isIncrease == true){
+         //       caseNewNumber = caseNumber + 1;
+         //    }
+         //    else if(isIncrease == false && caseNumber > 0){
+         //       caseNewNumber = caseNumber -1;
+         //    }
+         //    caseInput.value = caseNewNumber;
+         //    const caseNewValue = caseNewNumber * 59;
+         //    document.getElementById("caseValue").innerText = caseNewValue;
+         // }
+
+         // document.getElementById("case-add").addEventListener("click", function () {
+         //    const caseInput = document.getElementById("case-count");
+         //    const caseNumber = parseInt(caseInput.value);
+         //    const caseNewNumber = caseNumber + 1;
+         //    caseInput.value = caseNewNumber;
+         //    const caseNewValue = caseNewNumber * 59;
+         //    document.getElementById("caseValue").innerText = caseNewValue;
+         // })
+
+         // document.getElementById("case-reduce").addEventListener("click", function () {
+         //    const caseInput = document.getElementById("case-count");
+         //    const caseNumber = parseInt(caseInput.value);
+         //    const caseNewNumber = caseNumber - 1;
+         //    caseInput.value = caseNewNumber;
+         //    const caseNewValue = caseNewNumber * 59;
+         //    document.getElementById("caseValue").innerText = caseNewValue;
+         // })
+
+         // document.getElementById("phone-add").addEventListener("click", function () {
+         //    const phoneInput = document.getElementById("phone-count");
+         //    const phoneNumber = parseInt(phoneInput.value);
+         //    const phoneNewNumber = phoneNumber + 1;
+         //    phoneInput.value = phoneNewNumber;
+         //    const phoneNewValue = phoneNewNumber * 1219;
+         //    document.getElementById("phoneValue").innerText = phoneNewValue;
+         // })
+
+         // document.getElementById("phone-reduce").addEventListener("click", function () {
+         //    const phoneInput = document.getElementById("phone-count");
+         //    const phoneNumber = parseInt(phoneInput.value);
+         //    const phoneNewNumber = phoneNumber - 1;
+         //    phoneInput.value = phoneNewNumber;
+         //    const phoneNewValue = phoneNewNumber * 1219;
+         //    document.getElementById("phoneValue").innerText = phoneNewValue;
+         // })
       </script>
    </section>
-   
+
 </body>
-   
+
 </html>
